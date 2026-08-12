@@ -70,11 +70,15 @@ class DIDVerifier:
             elif prefix == b"\xeb\x01":  # p256-pub (secp256r1)
                 if len(public_key_bytes) != 65 or public_key_bytes[0] != 0x04:
                     return None
-                return ec.EllipticCurvePublicKey.from_encoded_point(ec.SECP256R1(), public_key_bytes)
+                return ec.EllipticCurvePublicKey.from_encoded_point(
+                    ec.SECP256R1(), public_key_bytes
+                )
             elif prefix == b"\xe7\x01":  # secp256k1-pub
                 if len(public_key_bytes) != 65 or public_key_bytes[0] != 0x04:
                     return None
-                return ec.EllipticCurvePublicKey.from_encoded_point(ec.SECP256K1(), public_key_bytes)
+                return ec.EllipticCurvePublicKey.from_encoded_point(
+                    ec.SECP256K1(), public_key_bytes
+                )
         return None
 
     def _verify_ed25519(

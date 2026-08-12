@@ -158,11 +158,17 @@ class QuoteVerifier:
 
         # Check mr_enclave
         if expected_mr_enclave and quote.mr_enclave != expected_mr_enclave:
-            return False, f"MRENCLAVE mismatch: expected {expected_mr_enclave}, got {quote.mr_enclave}"
+            return False, (
+                f"MRENCLAVE mismatch: expected {expected_mr_enclave}, "
+                f"got {quote.mr_enclave}"
+            )
 
         # Check mr_signer
         if expected_mr_signer and quote.mr_signer != expected_mr_signer:
-            return False, f"MRSIGNER mismatch: expected {expected_mr_signer}, got {quote.mr_signer}"
+            return False, (
+                f"MRSIGNER mismatch: expected {expected_mr_signer}, "
+                f"got {quote.mr_signer}"
+            )
 
         # Check report_data
         if expected_report_data:

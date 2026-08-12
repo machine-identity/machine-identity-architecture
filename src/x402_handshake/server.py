@@ -63,7 +63,9 @@ class X402Server:
         }
         return status_code, body, headers
 
-    def verify_payment(self, authorization_header: str, requirements: PaymentRequirements) -> VerifyResponse:
+    def verify_payment(
+    self, authorization_header: str, requirements: PaymentRequirements
+) -> VerifyResponse:
         """Verify an x402 payment authorization header."""
         try:
             payment_payload = PaymentPayload.from_header(authorization_header)
@@ -71,7 +73,9 @@ class X402Server:
             return VerifyResponse(success=False, error=f"Invalid payment header: {e}")
 
         if payment_payload.scheme != "exact":
-            return VerifyResponse(success=False, error=f"Unsupported scheme: {payment_payload.scheme}")
+            return VerifyResponse(
+                success=False, error=f"Unsupported scheme: {payment_payload.scheme}"
+            )
 
         try:
             exact_payload = ExactPaymentPayload(**payment_payload.payload)
@@ -87,7 +91,7 @@ class X402Server:
             async def wrapper(*args, **kwargs):
                 # This would be integrated with a web framework (FastAPI, etc.)
                 # For demo purposes, we show the pattern
-                requirements = self.create_payment_requirements(
+                self.create_payment_requirements(
                     resource=getattr(func, "__name__", "unknown"),
                     amount=amount,
                     description=description or f"Access to {func.__name__}",

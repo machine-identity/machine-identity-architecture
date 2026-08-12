@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import base58
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.asymmetric import ec, ed25519
 
 from .types import (
     DIDDocument,
@@ -104,7 +106,9 @@ def create_did_key_from_private_key(private_key_bytes: bytes, key_type: str = "e
         multibase_bytes = b"\xed\x01" + public_bytes
         multibase_str = 'z' + base58.b58encode(multibase_bytes).decode()
     elif key_type == "secp256k1":
-        private_key = ec.derive_private_key(int.from_bytes(private_key_bytes, "big"), ec.SECP256K1())
+        private_key = ec.derive_private_key(
+            int.from_bytes(private_key_bytes, "big"), ec.SECP256K1()
+        )
         public_key = private_key.public_key()
         public_bytes = public_key.public_bytes(
             encoding=serialization.Encoding.X962,
@@ -117,8 +121,3 @@ def create_did_key_from_private_key(private_key_bytes: bytes, key_type: str = "e
         raise ValueError(f"Unsupported key type: {key_type}")
 
     return f"did:key:{multibase_str}"
-
-
-# Import needed for create_did_key_from_private_key
-from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.primitives.asymmetric import ec, ed25519

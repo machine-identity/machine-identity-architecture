@@ -133,9 +133,9 @@ class ExactPaymentPayload(BaseModel):
     @validator("authorization")
     def validate_auth(cls, v):
         required = ["from", "to", "value", "validAfter", "validBefore", "nonce", "signature"]
-        for field in required:
-            if field not in v:
-                raise ValueError(f"Missing required authorization field: {field}")
+        for field_name in required:
+            if field_name not in v:
+                raise ValueError(f"Missing required authorization field: {field_name}")
         return v
 
 
@@ -195,7 +195,9 @@ def sign_payment_authorization(
 ) -> str:
     """Sign a payment authorization with the client's private key."""
     account = Account.from_key(private_key)
-    message = create_payment_message(from_address, to_address, value, valid_after, valid_before, nonce)
+    message = create_payment_message(
+        from_address, to_address, value, valid_after, valid_before, nonce
+    )
     encoded = encode_defunct(message)
     signed = account.sign_message(encoded)
     return signed.signature.hex()
@@ -212,7 +214,9 @@ def verify_payment_signature(
 ) -> bool:
     """Verify a payment authorization signature."""
     try:
-        message = create_payment_message(from_address, to_address, value, valid_after, valid_before, nonce)
+        message = create_payment_message(
+            from_address, to_address, value, valid_after, valid_before, nonce
+        )
         encoded = encode_defunct(message)
         recovered = Account.recover_message(encoded, signature=bytes.fromhex(signature))
         return recovered.lower() == from_address.lower()
@@ -220,7 +224,9 @@ def verify_payment_signature(
         return False
 
 
-def verify_exact_payment(payload: ExactPaymentPayload, requirements: PaymentRequirements) -> VerifyResponse:
+def verify_exact_payment(
+    payload: ExactPaymentPayload, requirements: PaymentRequirements
+) -> VerifyResponse:
     """Verify an exact payment payload against requirements."""
     auth = payload.authorization
 
