@@ -122,7 +122,7 @@ jobs:
               "creators": [{"name": "Machuca Araya, Jean Rubén", "orcid": "0009-0004-9924-2911"}],
               "keywords": ["AI Governance", "Autonomous Agents", "Machine Identity", "W3C DID", "x402", "TEE", "Agentic Web"],
               "license": "MIT",
-              "publication_type": "software",
+              "upload_type": "software",
               "version": version,
               "related_identifiers": []
           }
