@@ -133,7 +133,7 @@ pytest -v                           # Full test suite
 
 ## References & Resources
 
-- **Full Paper:** [The Architecture of Machine Identity](https://doi.org/10.5281/zenodo.21899100)
+- **Full Paper:** [The Architecture of Machine Identity](https://doi.org/10.5281/zenodo.21899099)
 - **Pre-review Synthesis:** [Machine Identity Pre-Review Summary](machine-identity-pre-review-summary.md)
 - **Sovereign Model Detail:** [6-Phase Bootstrapping Pipeline](The%20Sovereign%20Model%20-%20How%20a%20machine%20may%20bootstrap%20its%20own%20identity%20footprint.md)
 - **Control Layers Analysis:** [What Stops a Machine from Disobeying](What%20stops%20a%20machine%20from%20disobey.md)

@@ -154,5 +154,5 @@ pytest -v
 4. Who owns "agent identity strategy" — Security, Platform, or Architecture?
 
 **Contact:** github.com/jeanmachuca  
-**Paper DOI:** 10.5281/zenodo.21899100  
+**Paper DOI:** 10.5281/zenodo.21899099  
 **Code:** github.com/machine-identity/machine-identity-architecture
