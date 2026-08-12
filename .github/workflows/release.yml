@@ -98,23 +98,22 @@ jobs:
 
           for f in files:
               upload_url = f'https://zenodo.org/api/deposit/depositions/{deposition_id}/files'
-              with open(f, 'rb') as fp:
-                  data = {'name': f} if os.path.isfile(f) else {'name': f + '.zip'}
-                  if os.path.isfile(f):
-                      r = requests.post(upload_url, headers={'Authorization': f'Bearer {token}'}, data=data, files={'file': fp})
+              if os.path.isfile(f):
+                  with open(f, 'rb') as fp:
+                      r = requests.post(upload_url, headers={'Authorization': f'Bearer {token}'}, data={'name': f}, files={'file': fp})
                       r.raise_for_status()
-                  else:
-                      import zipfile
-                      import io
-                      buf = io.BytesIO()
-                      with zipfile.ZipFile(buf, 'w', zipfile.ZIP_DEFLATED) as zf:
-                          for root, dirs, fnames in os.walk(f):
-                              for fn in fnames:
-                                  full = os.path.join(root, fn)
-                                  zf.write(full, os.path.relpath(full, '.'))
-                      buf.seek(0)
-                      r = requests.post(upload_url, headers={'Authorization': f'Bearer {token}'}, data=data, files={'file': ('archive.zip', buf)})
-                      r.raise_for_status()
+              else:
+                  import zipfile
+                  import io
+                  buf = io.BytesIO()
+                  with zipfile.ZipFile(buf, 'w', zipfile.ZIP_DEFLATED) as zf:
+                      for root, dirs, fnames in os.walk(f):
+                          for fn in fnames:
+                              full = os.path.join(root, fn)
+                              zf.write(full, os.path.relpath(full, '.'))
+                  buf.seek(0)
+                  r = requests.post(upload_url, headers={'Authorization': f'Bearer {token}'}, data={'name': f + '.zip'}, files={'file': ('archive.zip', buf)})
+                  r.raise_for_status()
 
           # Set metadata
           metadata = {
