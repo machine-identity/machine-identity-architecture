@@ -1,4 +1,4 @@
-name: Release & Zenodo Deposit
+name: Release Software to Zenodo
 
 on:
   push:
@@ -41,7 +41,7 @@ jobs:
           prerelease: false
 
   zenodo:
-    name: Deposit to Zenodo
+    name: Deposit Software to Zenodo
     runs-on: ubuntu-latest
     needs: release
     if: github.repository == 'machine-identity/machine-identity-architecture'
@@ -83,3 +83,4 @@ jobs:
               "CITATION.cff",
               "pyproject.toml"
             ]
+EOF

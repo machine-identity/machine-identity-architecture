@@ -1,0 +1,59 @@
+name: Release Paper to Zenodo
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Paper version (e.g., v1.0.0)'
+        required: true
+        type: string
+      doi:
+        description: 'Existing Zenodo DOI to update (optional)'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  deposit-paper:
+    name: Deposit Paper to Zenodo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deposit Paper to Zenodo
+        uses: zenodo/zenodo-action@v1
+        with:
+          zenodo_token: ${{ secrets.ZENODO_TOKEN }}
+          deposition_metadata: |
+            {
+              "title": "The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance",
+              "description": "Research paper on machine identity architectures contrasting Sovereign Agent Model with Accountable Agent Model (MIP).",
+              "creators": [
+                {
+                  "name": "Machuca Araya, Jean Rubén",
+                  "orcid": "0009-0004-9924-2911"
+                }
+              ],
+              "keywords": ["AI Governance", "Autonomous Agents", "Machine Identity", "W3C DID", "x402", "TEE", "Agentic Web"],
+              "license": "CC-BY-4.0",
+              "publication_type": "publication",
+              "version": "${{ github.event.inputs.version }}",
+              "related_identifiers": []
+            }
+          files: |
+            [
+              "docs/paper.md",
+              "assets/machine_identity.pdf",
+              "docs/executive-summary.md",
+              "assets/executive-summary.pdf",
+              "docs/machine-identity-pre-review-summary.md",
+              "docs/The Sovereign Model - How a machine may bootstrap its own identity footprint.md",
+              "docs/What stops a machine from disobey.md",
+              "docs/architecture/identity-spectrum.mmd",
+              "docs/architecture/sovereign-bootstrap.mmd",
+              "docs/architecture/control-layers.mmd",
+              "docs/architecture/economic-model.mmd",
+              "docs/architecture/bootstrap-pipeline.mmd",
+              "machine_identity.bib"
+            ]
