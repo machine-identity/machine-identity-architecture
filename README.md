@@ -3,7 +3,8 @@
 Reference implementations for the research paper: **"The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance"**
 
 [![CI](https://github.com/machine-identity/machine-identity-architecture/actions/workflows/ci.yml/badge.svg)](https://github.com/machine-identity/machine-identity-architecture/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: CC-BY-4.0](https://img.shields.io/badge/Paper%20License-CC--BY--4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
 
@@ -193,7 +194,14 @@ pytest -v
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details.
+This repository uses **dual licensing** appropriate for each content type:
+
+| Content | License | Rationale |
+|---------|---------|-----------|
+| **Source code** (`src/`, `tests/`, `examples/`) | [MIT](LICENSE) | Standard for open-source software; permissive, OSI-approved |
+| **Research paper & docs** (`docs/`, `assets/*.pdf`, diagrams) | [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) | Standard for scholarly works; requires attribution, allows reuse |
+
+See [LICENSE](LICENSE) for the MIT license text. The CC-BY-4.0 license applies to all files in `docs/` and `assets/`.
 
 ## Contributing
 
