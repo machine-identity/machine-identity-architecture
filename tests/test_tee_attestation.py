@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import time
 
-from src.tee_attestation import (
+from tee_attestation import (
     AttestationQuote,
     QuoteGenerator,
     QuoteVerifier,
@@ -84,7 +84,7 @@ def test_quote_verification_tampered_mrenclave():
     )
 
     # Tamper with MRENCLAVE
-    from src.tee_attestation.quote import AttestationQuote
+    from tee_attestation.quote import AttestationQuote
     tampered = AttestationQuote(
         version=quote.version,
         timestamp=quote.timestamp,
@@ -129,7 +129,7 @@ def test_quote_verification_tampered_mrsigner():
     )
 
     # Tamper with MRSIGNER
-    from src.tee_attestation.quote import AttestationQuote
+    from tee_attestation.quote import AttestationQuote
     tampered = AttestationQuote(
         version=quote.version,
         timestamp=quote.timestamp,
@@ -168,7 +168,7 @@ def test_quote_verification_expired():
     report_data = b"test report data"
 
     # Create quote with old timestamp
-    from src.tee_attestation.quote import AttestationQuote
+    from tee_attestation.quote import AttestationQuote
     old_quote = AttestationQuote(
         version=1,
         timestamp=int(time.time()) - 7200,  # 2 hours ago

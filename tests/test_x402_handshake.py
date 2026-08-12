@@ -4,7 +4,7 @@ import secrets
 
 from eth_account import Account
 
-from src.x402_handshake.types import (
+from x402_handshake.types import (
     Currency,
     ExactPaymentPayload,
     Network,

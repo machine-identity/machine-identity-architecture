@@ -21,28 +21,47 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Deposit Paper to Zenodo
-        uses: zenodo/zenodo-action@v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          zenodo_token: ${{ secrets.ZENODO_TOKEN }}
-          deposition_metadata: |
-            {
-              "title": "The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance",
-              "description": "Research paper on machine identity architectures contrasting Sovereign Agent Model with Accountable Agent Model (MIP).",
-              "creators": [
-                {
-                  "name": "Machuca Araya, Jean Rubén",
-                  "orcid": "0009-0004-9924-2911"
-                }
-              ],
-              "keywords": ["AI Governance", "Autonomous Agents", "Machine Identity", "W3C DID", "x402", "TEE", "Agentic Web"],
-              "license": "CC-BY-4.0",
-              "publication_type": "publication",
-              "version": "${{ github.event.inputs.version }}",
-              "related_identifiers": []
-            }
-          files: |
-            [
+          python-version: "3.11"
+      - name: Install requests
+        run: pip install requests
+      - name: Deposit Paper to Zenodo
+        env:
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+        run: |
+          python << 'EOF'
+          import os
+          import json
+          import requests
+
+          token = os.environ['ZENODO_TOKEN']
+          version = "${{ github.event.inputs.version }}"
+          doi = "${{ github.event.inputs.doi }}"
+
+          headers = {
+              'Authorization': f'Bearer {token}',
+              'Content-Type': 'application/json',
+          }
+
+          # Create or update deposition
+          if doi:
+              # Update existing
+              record_id = doi.split('.')[-1]
+              url = f'https://zenodo.org/api/deposit/depositions/{record_id}/actions/edit'
+              r = requests.post(url, headers=headers)
+              r.raise_for_status()
+              deposition_id = r.json()['id']
+          else:
+              # Create new
+              url = 'https://zenodo.org/api/deposit/depositions'
+              r = requests.post(url, headers=headers, json={})
+              r.raise_for_status()
+              deposition_id = r.json()['id']
+
+          # Upload files
+          files = [
               "docs/machine_identity.md",
               "assets/machine_identity.pdf",
               "docs/executive-summary.md",
@@ -60,4 +79,35 @@ jobs:
               "docs/architecture/bootstrap-pipeline.mmd",
               "docs/executive-slides.md",
               "machine_identity.bib"
-            ]
+          ]
+
+          for f in files:
+              with open(f, 'rb') as fp:
+                  upload_url = f'https://zenodo.org/api/deposit/depositions/{deposition_id}/files'
+                  r = requests.post(upload_url, headers={'Authorization': f'Bearer {token}'}, data={'name': f}, files={'file': fp})
+                  r.raise_for_status()
+
+          # Set metadata
+          metadata = {
+              "title": "The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance",
+              "description": "Research paper on machine identity architectures contrasting Sovereign Agent Model with Accountable Agent Model (MIP).",
+              "creators": [{"name": "Machuca Araya, Jean Rubén", "orcid": "0009-0004-9924-2911"}],
+              "keywords": ["AI Governance", "Autonomous Agents", "Machine Identity", "W3C DID", "x402", "TEE", "Agentic Web"],
+              "license": "CC-BY-4.0",
+              "publication_type": "publication",
+              "version": version,
+              "related_identifiers": []
+          }
+          r = requests.put(
+              f'https://zenodo.org/api/deposit/depositions/{deposition_id}',
+              headers={**headers, 'Content-Type': 'application/json'},
+              json=metadata
+          )
+          r.raise_for_status()
+
+          # Publish
+          r = requests.post(f'https://zenodo.org/api/deposit/depositions/{deposition_id}/actions/publish', headers=headers)
+          r.raise_for_status()
+
+          print(f"Published! DOI: {r.json().get('doi', 'check Zenodo')}")
+          EOF

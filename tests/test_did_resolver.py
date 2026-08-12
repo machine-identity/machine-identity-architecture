@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from cryptography.hazmat.primitives.asymmetric import ed25519
 
-from src.did_resolver import (
+from did_resolver import (
     DIDDocument,
     DIDResolver,
     DIDVerifier,
