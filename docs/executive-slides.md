@@ -155,4 +155,6 @@ pytest -v
 
 **Contact:** github.com/jeanmachuca  
 **Paper DOI:** 10.5281/zenodo.21899099  
-**Code:** github.com/machine-identity/machine-identity-architecture
+**Code:** github.com/machine-identity/machine-identity-architecture  
+
+**License:** [CC-BY-4.0](../LICENSE-CC-BY-4.0.txt) (deck) · [MIT](../LICENSE) (code)

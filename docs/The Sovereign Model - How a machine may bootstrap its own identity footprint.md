@@ -82,3 +82,7 @@ When interacting with other machines, agents do not pass static passwords or API
 | **Payments** | Credit Card / Bank Wire | Smart Contracts / Crypto Wallets / Agentic Rails |
 | **Reputation** | Credit Score / Driver's License | Signed Verifiable Credentials (VCs) |
 
+---
+
+© 2026 Jean Rubén Machuca Araya. This document is licensed under [CC-BY-4.0](../LICENSE-CC-BY-4.0.txt). The reference implementation is licensed under [MIT](../LICENSE).
+

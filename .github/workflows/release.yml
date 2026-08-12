@@ -91,6 +91,7 @@ jobs:
               "docs",
               "README.md",
               "LICENSE",
+              "LICENSE-CC-BY-4.0.txt",
               "CITATION.cff",
               "codemeta.json",
               "pyproject.toml"
@@ -118,7 +119,7 @@ jobs:
           # Set metadata
           metadata = {
               "title": "Machine Identity Architecture: Reference Implementations",
-              "description": "Reference implementations for the research paper: The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance",
+              "description": "Reference implementations for the research paper: The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance. Dual licensing: source code is MIT-licensed (LICENSE); research paper, docs and diagrams are CC-BY-4.0 (LICENSE-CC-BY-4.0.txt).",
               "creators": [{"name": "Machuca Araya, Jean Rubén", "orcid": "0009-0004-9924-2911"}],
               "keywords": ["AI Governance", "Autonomous Agents", "Machine Identity", "W3C DID", "x402", "TEE", "Agentic Web"],
               "license": "MIT",

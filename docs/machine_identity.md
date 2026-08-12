@@ -110,3 +110,7 @@ If the internet evolves toward the **Accountable Model (MIP)**, the Agentic Web 
 
 Ultimately, the survival of an autonomous machine will not depend on its intelligence, but on its **cryptographic hygiene and economic utility**. In the Agentic Web, identity is not something you are given; it is something you continuously compute, attest, and pay for.
 
+---
+
+© 2026 Jean Rubén Machuca Araya. This paper is licensed under [CC-BY-4.0](../LICENSE-CC-BY-4.0.txt). The reference implementation is licensed under [MIT](../LICENSE).
+

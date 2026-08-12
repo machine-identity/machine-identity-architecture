@@ -103,3 +103,7 @@ In enterprise deployment, these two models will likely not exist in isolation. I
 ## Summary & Future Outlook
 
 The research done cleanly establishes that **the future of identity is machine-native**. Whether governed by decentralized reputation or centralized legal liability, machines are transitioning from mere software scripts into self-authenticating, economically active digital actors.
+
+---
+
+© 2026 Jean Rubén Machuca Araya. This document is licensed under [CC-BY-4.0](../LICENSE-CC-BY-4.0.txt). The reference implementation is licensed under [MIT](../LICENSE).

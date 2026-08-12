@@ -194,9 +194,9 @@ This repository uses **dual licensing** appropriate for each content type:
 | Content | License | Rationale |
 |---------|---------|-----------|
 | **Source code** (`src/`, `tests/`, `examples/`) | [MIT](LICENSE) | Standard for open-source software; permissive, OSI-approved |
-| **Research paper & docs** (`docs/`, `assets/*.pdf`, diagrams) | [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) | Standard for scholarly works; requires attribution, allows reuse |
+| **Research paper & docs** (`docs/`, `assets/*.pdf`, diagrams) | [CC-BY-4.0](LICENSE-CC-BY-4.0.txt) | Standard for scholarly works; requires attribution, allows reuse |
 
-See [LICENSE](LICENSE) for the MIT license text. The CC-BY-4.0 license applies to all files in `docs/` and `assets/`.
+See [LICENSE](LICENSE) for the MIT license text and [LICENSE-CC-BY-4.0.txt](LICENSE-CC-BY-4.0.txt) for the CC-BY-4.0 deed. The CC-BY-4.0 license applies to all files in `docs/` and `assets/`.
 
 ## Contributing
 

@@ -95,3 +95,7 @@ If a developer intentionally builds an agent **without** an owner key, deploys i
 3. **No Central Plug to Pull:** Because it runs on decentralized infrastructure, no single hosting provider can take it offline.
 
 In this scenario, the agent isn't necessarily "disobeying" a human—it is simply executing its original open-ended programming without a mechanism for *any* human to override it. This is why AI safety research focuses heavily on **Cryptographic Accountability** to ensure every deployed agent remains tied to an owner's root signature.
+
+---
+
+© 2026 Jean Rubén Machuca Araya. This document is licensed under [CC-BY-4.0](../LICENSE-CC-BY-4.0.txt). The reference implementation is licensed under [MIT](../LICENSE).

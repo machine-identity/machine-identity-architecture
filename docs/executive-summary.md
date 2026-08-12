@@ -143,4 +143,4 @@ pytest -v                           # Full test suite
 
 ---
 
-*This executive summary accompanies the research report "The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance" (2026). Licensed CC-BY-4.0. Reference implementation: MIT License.*
+*This executive summary accompanies the research report "The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance" (2026). Licensed [CC-BY-4.0](../LICENSE-CC-BY-4.0.txt). Reference implementation: [MIT](../LICENSE).*

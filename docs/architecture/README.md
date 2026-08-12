@@ -38,3 +38,7 @@ mmdc -i identity-spectrum.mmd -o identity-spectrum.svg
 [diagram content here]
 ```
 ```
+
+## License
+
+Diagrams are part of the research paper and are licensed under [CC-BY-4.0](../../LICENSE-CC-BY-4.0.txt).

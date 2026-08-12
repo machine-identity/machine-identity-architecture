@@ -17,3 +17,8 @@ This repository contains runnable Python reference implementations under `src/`:
 - `x402_handshake` — x402 HTTP micro-payment handshake (client + server)
 
 See the [README](https://github.com/machine-identity/machine-identity-architecture) for usage examples.
+
+## License
+
+- **Source code:** [MIT](../LICENSE)
+- **Research paper & docs:** [CC-BY-4.0](../LICENSE-CC-BY-4.0.txt)
