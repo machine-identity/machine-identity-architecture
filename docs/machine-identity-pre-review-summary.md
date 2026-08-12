@@ -1,4 +1,24 @@
 # Machine Identity Pre-Review Summary
+### Architectural Critique & Synthesis
+
+**Author:** Jean Rubén Machuca Araya  
+**ORCID:** [0009-0004-9924-2911](https://orcid.org/0009-0004-9924-2911)  
+**Date:** August 2026  
+**Version:** 1.0.0  
+**DOI:** `10.5281/zenodo.XXXXXXX` (pending)  
+**License:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)  
+
+**Keywords:** AI Governance, Autonomous Agents, Machine Identity, W3C DID, x402, TEE, Agentic Web, Cryptographic Self-Sovereignty, Machine Identity Profile
+
+---
+
+## Abstract
+
+This architectural critique examines the research report "The Architecture of Machine Identity," stress-testing its conclusions and highlighting where the Sovereign Agent Model and Accountable Agent Model (MIP) are likely to converge in production. The analysis identifies key architectural gaps in TEE attestation, W3C DID resolution mechanisms, and the economic sustainability of autonomous agents, while proposing a hybrid "perimeter-sovereign, core-accountable" architecture for enterprise deployment.
+
+---
+
+## Executive Review & Critical Synthesis
 
 This research report effectively captures the defining architectural crossroad of machine identity. By contrasting the **Sovereign Agent Model** with the **Accountable Agent Model (Machine Identity Profile)**, you have mapped out the foundational tension of the emerging Agentic Web: **Permissionless Self-Sovereignty vs. Legal & Enterprise Accountability.**
 

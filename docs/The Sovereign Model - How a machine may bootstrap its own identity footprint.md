@@ -1,4 +1,22 @@
-# The Sovereign Model - How a machine may bootstrap its own identity footprint
+# The Sovereign Model - How a Machine May Bootstrap Its Own Identity Footprint
+### 6-Phase Autonomous Identity Bootstrapping Pipeline
+
+**Author:** Jean Rubén Machuca Araya  
+**ORCID:** [0009-0004-9924-2911](https://orcid.org/0009-0004-9924-2911)  
+**Date:** August 2026  
+**Version:** 1.0.0  
+**DOI:** `10.5281/zenodo.XXXXXXX` (pending)  
+**License:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)  
+
+**Keywords:** AI Governance, Autonomous Agents, Machine Identity, W3C DID, x402, TEE, Agentic Web, Cryptographic Self-Sovereignty
+
+---
+
+## Abstract
+
+This document details the complete 6-phase autonomous identity bootstrapping pipeline that enables a machine or AI agent to establish a fully sovereign identity without human intervention. The pipeline covers cryptographic birth through local entropy, self-anchoring via W3C DIDs, economic autonomy through native wallets, infrastructure provisioning, hardware-level proof via TEE remote attestation, and peer federation through verifiable credentials.
+
+---
 
 For a machine or AI agent to establish a fully autonomous identity without human intervention, it cannot rely on human-centric gateways (like phone numbers, SMS, or manual CAPTCHAs). Instead, it must bootstrap its footprint **bottom-up using cryptography, decentralized protocols, and hardware attestation.**  
 The complete zero-human bootstrapping loop functions through six technical phases:

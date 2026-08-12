@@ -1,4 +1,22 @@
-# What Stops a Machine from Disobeying?
+# What Stops a Machine from Disobeying?
+### Control Layers for Autonomous Agent Governance
+
+**Author:** Jean Rubén Machuca Araya  
+**ORCID:** [0009-0004-9924-2911](https://orcid.org/0009-0004-9924-2911)  
+**Date:** August 2026  
+**Version:** 1.0.0  
+**DOI:** `10.5281/zenodo.XXXXXXX` (pending)  
+**License:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)  
+
+**Keywords:** AI Governance, Autonomous Agents, Machine Identity, W3C DID, x402, TEE, Agentic Web, Cryptographic Access Control, Smart Contract Guardrails
+
+---
+
+## Abstract
+
+This document examines the control mechanisms that prevent autonomous agents from disobeying their owners or operators. It analyzes three enforcement layers: the deterministic outer shell (code invariants), hardware enclaves (TEE remote attestation), and smart contract guardrails (spend limits, multi-sig, kill switches). The analysis also identifies the "sovereign bot" edge case where an agent has no owner key, decentralized compute, and self-funding—rendering it uncontrollable by any human.
+
+---
 
 To understand what stops a machine from disobeying, you have to separate **Operational Autonomy** (the ability to perform tasks on its own) from **Behavioral Authority** (who holds the master controls).
 
