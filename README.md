@@ -88,10 +88,7 @@ from x402_handshake import Client, Server, PaymentRequirements
 # Server requires payment for API access
 server = Server()
 requirements = server.create_payment_requirements(
-    amount="0.001",
-    currency="USDC",
-    network="base-sepolia",
-    pay_to="0x..."
+    amount="0.001", currency="USDC", network="base-sepolia", pay_to="0x..."
 )
 
 # Client receives 402, pays, retries
@@ -119,7 +116,7 @@ valid = verifier.verify_signature(
     did_doc=did_doc,
     message=b"hello",
     signature=sig_bytes,
-    verification_method="did:key:z6MkpTHR...#z6MkpTHR..."
+    verification_method="did:key:z6MkpTHR...#z6MkpTHR...",
 )
 ```
 
@@ -136,9 +133,7 @@ from tee_attestation import QuoteGenerator, QuoteVerifier
 
 generator = QuoteGenerator()
 quote = generator.generate_quote(
-    mr_enclave="abcd1234...",
-    mr_signer="efgh5678...",
-    report_data=b"agent-v1.0"
+    mr_enclave="abcd1234...", mr_signer="efgh5678...", report_data=b"agent-v1.0"
 )
 
 verifier = QuoteVerifier()
