@@ -1,0 +1,46 @@
+```mermaid
+graph TB
+    subgraph SOVEREIGN["SOVEREIGN MODEL (Web3 / Permissionless)"]
+        S1[Self-Generated Keypair]
+        S2[W3C DID: did:key / did:pkh]
+        S3[x402 Micro-Payments]
+        S4[TEE Remote Attestation]
+        S5[Verifiable Credentials / Reputation]
+        S6[Economic Exile Governance]
+    end
+
+    subgraph ACCOUNTABLE["ACCOUNTABLE MODEL / MIP (Enterprise / Gated)"]
+        A1[Hardware Profile: TPM + CPU]
+        A2[Software Profile: OS + Kernel]
+        A3[Human Owner: SSH Public Key]
+        A4[Gated Registry / Federation]
+        A5[Human Legal Liability]
+        A6[Hardware-Bound Access Control]
+    end
+
+    subgraph CONVERGENCE["CONVERGENCE: PERIMETER-SOVEREIGN / CORE-ACCOUNTABLE"]
+        C1[External Agentic Market]
+        C2[Sovereign Border Agent<br/>DIDs + x402 + VCs]
+        C3[Enterprise MIP Gateway<br/>TPM + OS + Human Owner]
+        C4[Internal Infrastructure]
+    end
+
+    S1 --> S2 --> S3
+    S3 --> S4
+    S4 --> S5
+    S5 --> S6
+
+    A1 --> A4
+    A2 --> A4
+    A3 --> A4
+    A4 --> A5
+    A4 --> A6
+
+    C1 --> C2
+    C2 --> C3
+    C3 --> C4
+
+    style SOVEREIGN fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style ACCOUNTABLE fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style CONVERGENCE fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+```

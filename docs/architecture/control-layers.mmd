@@ -1,0 +1,34 @@
+```mermaid
+flowchart TD
+    subgraph AGENT["AUTONOMOUS AGENT"]
+        LLM["LLM / AI Reasoning Engine"]
+    end
+
+    subgraph SHELL["DETERMINISTIC OUTER SHELL (Code)"]
+        INV["Invariant Checks\n(e.g., if target != approved: cancel())"]
+        API["API Wrappers\n(Wallet, HTTP, DB)"]
+    end
+
+    subgraph TEE["TEE ENCLAVE (Hardware-Locked)"]
+        SEALED["Code Sealed at Boot\n(MRENCLAVE / MRSIGNER)"]
+        ATTEST["Remote Attestation\nQuote Generation"]
+    end
+
+    subgraph SMART["SMART CONTRACT GUARDRAILS (On-Chain)"]
+        LIMIT["Daily Spend Limits\n(e.g., $50/day)"]
+        MULTI["Multi-Sig for Large Transfers\n(2-of-2 Owner + Agent)"]
+        KILL["Owner Kill Switch\n(Revoke Wallet Access)"]
+    end
+
+    LLM --> SHELL
+    SHELL --> TEE
+    SHELL --> SMART
+
+    USER["HUMAN OWNER"] -.->|Owner Private Key\nSigns Commands| SHELL
+    USER -.->|Master Admin Key| SMART
+
+    style AGENT fill:#fff3e0,stroke:#ef6c00
+    style SHELL fill:#e8f5e9,stroke:#388e3c
+    style TEE fill:#e3f2fd,stroke:#1976d2
+    style SMART fill:#fce4ec,stroke:#c2185b
+```
