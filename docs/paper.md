@@ -1,6 +1,21 @@
 # Research Report: The Architecture of Machine Identity
 ### Sovereign Agents, Economic Autonomy, and the Future of AI Governance
 
+**Author:** Jean Rubén Machuca Araya  
+**ORCID:** [0009-0004-9924-2911](https://orcid.org/0009-0004-9924-2911)  
+**Date:** August 2026  
+**Version:** 1.0.0  
+**DOI:** `10.5281/zenodo.XXXXXXX` (pending)  
+**License:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)  
+
+**Keywords:** AI Governance, Autonomous Agents, Machine Identity, W3C DID, x402, TEE, Agentic Web, Cryptographic Self-Sovereignty, Machine Identity Profile
+
+---
+
+## Abstract
+
+As Artificial Intelligence transitions from passive tools to active, autonomous agents, traditional human-centric identity frameworks fail. This report synthesizes current architectural models for machine identity, contrasting the **Sovereign Agent Model** (cryptographic self-sovereignty, x402 micro-payments, W3C DIDs) with the **Accountable Agent Model** (hardware-software binding, Machine Identity Profiles, and human legal liability). By analyzing the 6-Phase Autonomous Identity Bootstrapping Pipeline, the economics of Genesis Smart Contracts, and the CognitiveOS Machine Identity Profile (MIP), this report outlines how the internet is evolving into an "Agentic Web" where machines transact, build reputation, and are governed not by human administrators, but by cryptographic physics and market forces.
+
 ---
 
 ## Executive Summary
