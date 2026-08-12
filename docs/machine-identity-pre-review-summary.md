@@ -96,7 +96,7 @@ In enterprise deployment, these two models will likely not exist in isolation. I
 ```
 
 1. **At the Perimeter:** Autonomous agents use **Sovereign Protocols** (DIDs, x402, smart wallets) to negotiate, sell API access, and transact with external third-party machines.
-2. **At the Core:** Before an agent is permitted to touch internal databases or corporate infrastructure, it must pass through an **Accountable MIP Gateway** (CognitiveOS ADR-009). The enterprise verifies the machine's TPM state, OS integrity, and assigned human supervisor before granting scoped access tokens.
+2. **At the Core:** Before an agent is permitted to touch internal databases or corporate infrastructure, it must pass through an **Accountable MIP Gateway** ([CognitiveOS ADR-009](https://github.com/CognitiveOS-Project/product-specs/blob/main/adr/ADR-009-machine-identity-profile.md)). The enterprise verifies the machine's TPM state, OS integrity, and assigned human supervisor before granting scoped access tokens.
 
 ---
 

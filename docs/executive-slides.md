@@ -101,7 +101,7 @@ August 2026
 | Priority | Action | Phase |
 |----------|--------|-------|
 | **1. Pilot** | Run x402 for internal agent APIs | Short-term |
-| **2. Evaluate** | Assess MIP Gateway (CognitiveOS ADR-009) | Short-term |
+| **2. Evaluate** | Assess [MIP Gateway (CognitiveOS ADR-009)](https://github.com/CognitiveOS-Project/product-specs/blob/main/adr/ADR-009-machine-identity-profile.md) | Short-term |
 | **3. Influence** | Join W3C DID WG / CCG | Ongoing |
 | **4. Enable** | Budget for TEE-enabled agent infra | Medium-term |
 | **5. Scale** | Build Verifiable Credential reputation system | Long-term |

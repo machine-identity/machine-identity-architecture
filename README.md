@@ -204,7 +204,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## Related Work
 
-- [CognitiveOS ADR-009: Machine Identity Profile](https://github.com/cognitiveos/adr/tree/main/009-machine-identity-profile)
+- [CognitiveOS ADR-009: Machine Identity Profile](https://github.com/CognitiveOS-Project/product-specs/blob/main/adr/ADR-009-machine-identity-profile.md)
 - [x402 Specification](https://github.com/coinbase/x402)
 - [W3C DID Core](https://www.w3.org/TR/did-core/)
 - [AgentKit by Coinbase](https://github.com/coinbase/agentkit)

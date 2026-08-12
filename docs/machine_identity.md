@@ -72,7 +72,7 @@ If a rogue agent is "killed" economically, it can theoretically generate a new p
 ---
 
 ## 5. The Accountability Alternative: The Machine Identity Profile (MIP)
-While the Sovereign Model relies on market forces to punish bad actors, the **Accountable Agent Model** (exemplified by CognitiveOS's ADR-009) rejects total machine sovereignty in favor of strict supply-chain security and human liability.
+While the Sovereign Model relies on market forces to punish bad actors, the **Accountable Agent Model** (exemplified by CognitiveOS's [ADR-009](https://github.com/CognitiveOS-Project/product-specs/blob/main/adr/ADR-009-machine-identity-profile.md)) rejects total machine sovereignty in favor of strict supply-chain security and human liability.
 
 ### The Identity Triad
 Under the MIP framework, a machine's identity is not just a cryptographic key. It is a triad of inherent properties evaluated by a central Registry Server:
