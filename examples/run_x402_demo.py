@@ -19,7 +19,6 @@ from x402_handshake import (
 
 
 def main():
-
     # Setup: Create server (API provider) and client (agent)
     server_private_key = secrets.token_hex(32)
     server_account = Account.from_key(server_private_key)
@@ -27,7 +26,6 @@ def main():
 
     client_private_key = secrets.token_hex(32)
     client_account = Account.from_key(client_private_key)
-
 
     # Create server with payment requirements
     server = X402Server(
@@ -44,7 +42,6 @@ def main():
         amount="0.001",
         description="Execute autonomous agent task",
     )
-
 
     # Create client
     client = X402Client(
@@ -64,7 +61,6 @@ def main():
     # Mock settlement
     verifier = MockPaymentVerifier()
     verifier.verify_and_settle(verification)
-
 
 
 if __name__ == "__main__":

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any
+
 import base58
 from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.primitives import hashes
@@ -47,12 +49,12 @@ class DIDVerifier:
                 return vm
         return None
 
-    def _get_public_key(self, vm: VerificationMethod):
+    def _get_public_key(self, vm: VerificationMethod) -> Any:
         """Extract public key from verification method."""
         if vm.public_key_multibase:
             multibase_str = vm.public_key_multibase
             # Handle multibase prefix 'z' for base58btc
-            if multibase_str.startswith('z'):
+            if multibase_str.startswith("z"):
                 multibase_str = multibase_str[1:]
 
             # Decode base58
@@ -117,6 +119,7 @@ class DIDVerifier:
 
     def _encode_dss_signature(self, r: int, s: int) -> bytes:
         from cryptography.hazmat.primitives.asymmetric.utils import encode_dss_signature
+
         return encode_dss_signature(r, s)
 
     def verify_challenge_response(

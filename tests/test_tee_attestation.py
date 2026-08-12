@@ -15,7 +15,7 @@ def test_create_mock_measurements():
     mr_enclave, mr_signer = create_mock_measurements("code_hash", "signer_hash")
 
     assert len(mr_enclave) == 64  # SHA256 hex
-    assert len(mr_signer) == 64   # SHA256 hex
+    assert len(mr_signer) == 64  # SHA256 hex
     assert mr_enclave != mr_signer
 
 
@@ -85,6 +85,7 @@ def test_quote_verification_tampered_mrenclave():
 
     # Tamper with MRENCLAVE
     from tee_attestation.quote import AttestationQuote
+
     tampered = AttestationQuote(
         version=quote.version,
         timestamp=quote.timestamp,
@@ -130,6 +131,7 @@ def test_quote_verification_tampered_mrsigner():
 
     # Tamper with MRSIGNER
     from tee_attestation.quote import AttestationQuote
+
     tampered = AttestationQuote(
         version=quote.version,
         timestamp=quote.timestamp,
@@ -169,6 +171,7 @@ def test_quote_verification_expired():
 
     # Create quote with old timestamp
     from tee_attestation.quote import AttestationQuote
+
     old_quote = AttestationQuote(
         version=1,
         timestamp=int(time.time()) - 7200,  # 2 hours ago
@@ -189,20 +192,23 @@ def test_quote_verification_expired():
     # Manually sign with generator's key
     import hashlib
     import hmac
-    quote_data = b"|".join([
-        str(old_quote.version).encode(),
-        str(old_quote.timestamp).encode(),
-        old_quote.tee_type.encode(),
-        old_quote.mr_enclave.encode(),
-        old_quote.mr_signer.encode(),
-        old_quote.rt_mr0.encode(),
-        old_quote.rt_mr1.encode(),
-        old_quote.rt_mr2.encode(),
-        old_quote.rt_mr3.encode(),
-        old_quote.report_data,
-        str(old_quote.isv_prod_id).encode(),
-        str(old_quote.isv_svn).encode(),
-    ])
+
+    quote_data = b"|".join(
+        [
+            str(old_quote.version).encode(),
+            str(old_quote.timestamp).encode(),
+            old_quote.tee_type.encode(),
+            old_quote.mr_enclave.encode(),
+            old_quote.mr_signer.encode(),
+            old_quote.rt_mr0.encode(),
+            old_quote.rt_mr1.encode(),
+            old_quote.rt_mr2.encode(),
+            old_quote.rt_mr3.encode(),
+            old_quote.report_data,
+            str(old_quote.isv_prod_id).encode(),
+            str(old_quote.isv_svn).encode(),
+        ]
+    )
     old_quote.signature = hmac.new(generator.signing_key, quote_data, hashlib.sha256).digest()
 
     valid, message = verifier.verify(

@@ -11,15 +11,16 @@ from typing import Any
 @dataclass
 class AttestationQuote:
     """Mock TEE attestation quote."""
+
     version: int = 1
     timestamp: int = field(default_factory=lambda: int(time.time()))
     tee_type: str = "mock"
     mr_enclave: str = ""  # Measurement of enclave code
-    mr_signer: str = ""   # Measurement of signer
-    rt_mr0: str = ""      # Runtime measurement register 0
-    rt_mr1: str = ""      # Runtime measurement register 1
-    rt_mr2: str = ""      # Runtime measurement register 2
-    rt_mr3: str = ""      # Runtime measurement register 3
+    mr_signer: str = ""  # Measurement of signer
+    rt_mr0: str = ""  # Runtime measurement register 0
+    rt_mr1: str = ""  # Runtime measurement register 1
+    rt_mr2: str = ""  # Runtime measurement register 2
+    rt_mr3: str = ""  # Runtime measurement register 3
     report_data: bytes = b""  # User-defined data (64 bytes)
     isv_prod_id: int = 1
     isv_svn: int = 1
@@ -159,15 +160,13 @@ class QuoteVerifier:
         # Check mr_enclave
         if expected_mr_enclave and quote.mr_enclave != expected_mr_enclave:
             return False, (
-                f"MRENCLAVE mismatch: expected {expected_mr_enclave}, "
-                f"got {quote.mr_enclave}"
+                f"MRENCLAVE mismatch: expected {expected_mr_enclave}, got {quote.mr_enclave}"
             )
 
         # Check mr_signer
         if expected_mr_signer and quote.mr_signer != expected_mr_signer:
             return False, (
-                f"MRSIGNER mismatch: expected {expected_mr_signer}, "
-                f"got {quote.mr_signer}"
+                f"MRSIGNER mismatch: expected {expected_mr_signer}, got {quote.mr_signer}"
             )
 
         # Check report_data
@@ -188,7 +187,7 @@ class QuoteVerifier:
         expected_sig = hmac.new(
             self.trusted_signing_keys[0] if self.trusted_signing_keys else b"default_key",
             quote_data,
-            hashlib.sha256
+            hashlib.sha256,
         ).digest()
         return hmac.compare_digest(quote.signature, expected_sig)
 

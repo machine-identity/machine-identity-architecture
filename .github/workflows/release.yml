@@ -83,4 +83,3 @@ jobs:
               "CITATION.cff",
               "pyproject.toml"
             ]
-EOF

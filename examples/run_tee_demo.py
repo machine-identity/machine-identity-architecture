@@ -16,13 +16,11 @@ from tee_attestation import (
 
 
 def main():
-
     # Create mock measurements for agent code
     agent_code_hash = "sha256:agent-v1.0.0:main.py:dependencies.lock"
     signer_hash = "sha256:creator-key:ed25519:pubkey"
 
     mr_enclave, mr_signer = create_mock_measurements(agent_code_hash, signer_hash)
-
 
     # Create quote generator (simulates TEE hardware)
     generator = QuoteGenerator()
@@ -38,7 +36,6 @@ def main():
         isv_svn=1,
     )
 
-
     # Verifier checks the quote (simulates remote verifier)
     verifier = QuoteVerifier(trusted_signing_keys=[generator.signing_key])
 
@@ -48,7 +45,6 @@ def main():
         expected_mr_signer=mr_signer,
         expected_report_data=report_data,
     )
-
 
     # Test tampering detection
     tampered_quote = AttestationQuote(
@@ -75,7 +71,6 @@ def main():
         expected_report_data=report_data,
     )
 
-
     # Test expired quote
     old_quote = AttestationQuote(
         version=quote.version,
@@ -101,8 +96,6 @@ def main():
         expected_report_data=report_data,
         max_age_seconds=3600,  # 1 hour max age
     )
-
-
 
 
 if __name__ == "__main__":

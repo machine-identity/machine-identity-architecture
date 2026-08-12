@@ -22,6 +22,7 @@ class VerificationMaterialFormat(StrEnum):
 @dataclass
 class VerificationMethod:
     """A verification method in a DID Document."""
+
     id: str
     type: str
     controller: str
@@ -30,7 +31,7 @@ class VerificationMethod:
     blockchain_account_id: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
-        result = {
+        result: dict[str, Any] = {
             "id": self.id,
             "type": self.type,
             "controller": self.controller,
@@ -47,6 +48,7 @@ class VerificationMethod:
 @dataclass
 class ServiceEndpoint:
     """A service endpoint in a DID Document."""
+
     id: str
     type: str
     service_endpoint: str
@@ -62,10 +64,13 @@ class ServiceEndpoint:
 @dataclass
 class DIDDocument:
     """W3C DID Document."""
-    context: list[str] = field(default_factory=lambda: [
-        "https://www.w3.org/ns/did/v1",
-        "https://w3id.org/security/multikey/v1",
-    ])
+
+    context: list[str] = field(
+        default_factory=lambda: [
+            "https://www.w3.org/ns/did/v1",
+            "https://w3id.org/security/multikey/v1",
+        ]
+    )
     id: str = ""
     verification_method: list[VerificationMethod] = field(default_factory=list)
     authentication: list[str] = field(default_factory=list)
@@ -92,22 +97,26 @@ class DIDDocument:
     def from_dict(cls, data: dict[str, Any]) -> DIDDocument:
         vm_list = []
         for vm in data.get("verificationMethod", []):
-            vm_list.append(VerificationMethod(
-                id=vm["id"],
-                type=vm["type"],
-                controller=vm["controller"],
-                public_key_multibase=vm.get("publicKeyMultibase"),
-                public_key_jwk=vm.get("publicKeyJwk"),
-                blockchain_account_id=vm.get("blockchainAccountId"),
-            ))
+            vm_list.append(
+                VerificationMethod(
+                    id=vm["id"],
+                    type=vm["type"],
+                    controller=vm["controller"],
+                    public_key_multibase=vm.get("publicKeyMultibase"),
+                    public_key_jwk=vm.get("publicKeyJwk"),
+                    blockchain_account_id=vm.get("blockchainAccountId"),
+                )
+            )
 
         service_list = []
         for s in data.get("service", []):
-            service_list.append(ServiceEndpoint(
-                id=s["id"],
-                type=s["type"],
-                service_endpoint=s["serviceEndpoint"],
-            ))
+            service_list.append(
+                ServiceEndpoint(
+                    id=s["id"],
+                    type=s["type"],
+                    service_endpoint=s["serviceEndpoint"],
+                )
+            )
 
         return cls(
             context=data.get("@context", []),
@@ -131,7 +140,7 @@ def parse_did_key(did: str) -> tuple[str, bytes]:
     multibase_str = did[8:]  # Remove "did:key:"
 
     # Handle multibase prefix 'z' for base58btc
-    if multibase_str.startswith('z'):
+    if multibase_str.startswith("z"):
         multibase_str = multibase_str[1:]
 
     # Decode base58
@@ -174,7 +183,7 @@ def parse_did_pkh(did: str) -> tuple[str, str, str]:
 def multibase_to_jwk(multibase_str: str) -> dict[str, Any]:
     """Convert multibase encoded public key to JWK format."""
     # Handle multibase prefix 'z' for base58btc
-    if multibase_str.startswith('z'):
+    if multibase_str.startswith("z"):
         multibase_str = multibase_str[1:]
 
     # Decode base58

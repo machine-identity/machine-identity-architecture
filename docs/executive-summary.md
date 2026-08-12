@@ -134,9 +134,9 @@ pytest -v                           # Full test suite
 ## References & Resources
 
 - **Full Paper:** [The Architecture of Machine Identity](https://doi.org/10.5281/zenodo.XXXXXXX)
-- **Pre-review Synthesis:** [Machine Identity Pre-Review Summary](docs/machine-identity-pre-review-summary.md)
-- **Sovereign Model Detail:** [6-Phase Bootstrapping Pipeline](docs/The%20Sovereign%20Model%20-%20How%20a%20machine%20may%20bootstrap%20its%20own%20identity%20footprint.md)
-- **Control Layers Analysis:** [What Stops a Machine from Disobeying](docs/What%20stops%20a%20machine%20from%20disobey.md)
+- **Pre-review Synthesis:** [Machine Identity Pre-Review Summary](machine-identity-pre-review-summary.md)
+- **Sovereign Model Detail:** [6-Phase Bootstrapping Pipeline](The%20Sovereign%20Model%20-%20How%20a%20machine%20may%20bootstrap%20its%20own%20identity%20footprint.md)
+- **Control Layers Analysis:** [What Stops a Machine from Disobeying](What%20stops%20a%20machine%20from%20disobey.md)
 - **CognitiveOS ADR-009:** Machine Identity Profile (MIP) Specification
 - **x402 Specification:** https://x402.org
 - **W3C DID Core:** https://www.w3.org/TR/did-core/

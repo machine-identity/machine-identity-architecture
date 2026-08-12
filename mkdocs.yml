@@ -1,0 +1,39 @@
+site_name: Machine Identity Architecture
+site_url: https://machine-identity.github.io/machine-identity-architecture
+repo_url: https://github.com/machine-identity/machine-identity-architecture
+edit_uri: blob/main/docs/
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - toc:
+      permalink: true
+plugins:
+  - search
+nav:
+  - Home: index.md
+  - Machine Identity: machine_identity.md
+  - Executive Summary: executive-summary.md
+  - Executive Slides: executive-slides.md
+  - Pre-Review Summary: machine-identity-pre-review-summary.md
+  - Sovereign Model: The Sovereign Model - How a machine may bootstrap its own identity footprint.md
+  - Compliance: What stops a machine from disobey.md
+  - Architecture:
+      - Overview: architecture/README.md

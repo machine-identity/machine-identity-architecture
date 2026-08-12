@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import time
 from dataclasses import dataclass, field
+from typing import Any
 
 from eth_account import Account
 from eth_account.messages import encode_defunct
@@ -11,6 +12,7 @@ from pydantic import BaseModel, validator
 
 class Network(str):
     """Supported blockchain networks for x402 payments."""
+
     BASE_SEPOLIA = "base-sepolia"
     BASE = "base"
     ETHEREUM = "ethereum"
@@ -20,6 +22,7 @@ class Network(str):
 
 class Currency(str):
     """Supported payment currencies."""
+
     USDC = "USDC"
     ETH = "ETH"
 
@@ -27,6 +30,7 @@ class Currency(str):
 @dataclass
 class PaymentRequirements:
     """x402 Payment Requirements object (sent in 402 response)."""
+
     scheme: str = "exact"
     network: str = Network.BASE_SEPOLIA
     max_amount_required: str = "0.001"
@@ -71,6 +75,7 @@ class PaymentRequirements:
 @dataclass
 class PaymentPayload:
     """x402 Payment Payload (sent by client in Authorization header)."""
+
     x402_version: int = 1
     scheme: str = "exact"
     network: str = Network.BASE_SEPOLIA
@@ -103,6 +108,7 @@ class PaymentPayload:
 @dataclass
 class VerifyResponse:
     """x402 Verify Response (returned by server after payment verification)."""
+
     success: bool
     payer: str = ""
     transaction_hash: str = ""
@@ -121,6 +127,7 @@ class VerifyResponse:
 
 class ExactPaymentPayload(BaseModel):
     """Exact payment scheme payload structure."""
+
     authorization: dict
     amount: str
     currency: str
@@ -131,7 +138,7 @@ class ExactPaymentPayload(BaseModel):
     timestamp: int
 
     @validator("authorization")
-    def validate_auth(cls, v):
+    def validate_auth(cls, v: dict[str, Any]) -> dict[str, Any]:
         required = ["from", "to", "value", "validAfter", "validBefore", "nonce", "signature"]
         for field_name in required:
             if field_name not in v:
@@ -200,7 +207,8 @@ def sign_payment_authorization(
     )
     encoded = encode_defunct(message)
     signed = account.sign_message(encoded)
-    return signed.signature.hex()
+    hex_signature: str = signed.signature.hex()
+    return hex_signature
 
 
 def verify_payment_signature(
@@ -219,7 +227,8 @@ def verify_payment_signature(
         )
         encoded = encode_defunct(message)
         recovered = Account.recover_message(encoded, signature=bytes.fromhex(signature))
-        return recovered.lower() == from_address.lower()
+        recovered_address: str = recovered.lower()
+        return recovered_address == from_address.lower()
     except Exception:
         return False
 

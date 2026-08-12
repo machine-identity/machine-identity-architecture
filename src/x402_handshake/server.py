@@ -21,6 +21,7 @@ from .types import (
 @dataclass
 class X402Server:
     """Server that enforces x402 payment requirements on protected endpoints."""
+
     pay_to_address: str
     network: str = Network.BASE_SEPOLIA
     asset: str = Currency.USDC
@@ -64,8 +65,8 @@ class X402Server:
         return status_code, body, headers
 
     def verify_payment(
-    self, authorization_header: str, requirements: PaymentRequirements
-) -> VerifyResponse:
+        self, authorization_header: str, requirements: PaymentRequirements
+    ) -> VerifyResponse:
         """Verify an x402 payment authorization header."""
         try:
             payment_payload = PaymentPayload.from_header(authorization_header)
@@ -84,11 +85,16 @@ class X402Server:
 
         return verify_exact_payment(exact_payload, requirements)
 
-    def protect(self, amount: str | None = None, description: str | None = None):
+    def protect(
+        self, amount: str | None = None, description: str | None = None
+    ) -> Callable[[Callable[..., Awaitable[Any]]], Callable[..., Awaitable[Any]]]:
         """Decorator to protect an endpoint with x402 payment."""
-        def decorator(func: Callable[..., Awaitable[Any]]):
+
+        def decorator(
+            func: Callable[..., Awaitable[Any]],
+        ) -> Callable[..., Awaitable[Any]]:
             @wraps(func)
-            async def wrapper(*args, **kwargs):
+            async def wrapper(*args: Any, **kwargs: Any) -> Any:
                 # This would be integrated with a web framework (FastAPI, etc.)
                 # For demo purposes, we show the pattern
                 self.create_payment_requirements(
@@ -101,15 +107,17 @@ class X402Server:
                 # if not verification.success:
                 #     return self.payment_required_response(requirements)
                 return await func(*args, **kwargs)
+
             return wrapper
+
         return decorator
 
 
 class MockPaymentVerifier:
     """Mock verifier for testing without blockchain interaction."""
 
-    def __init__(self):
-        self.verified_payments: list[dict] = []
+    def __init__(self) -> None:
+        self.verified_payments: list[dict[str, Any]] = []
 
     def verify_and_settle(self, verification: VerifyResponse) -> VerifyResponse:
         """Simulate on-chain verification and settlement."""
@@ -119,12 +127,14 @@ class MockPaymentVerifier:
         # In production: verify transaction on-chain via RPC
         # For mock: simulate success
         mock_tx_hash = f"0x{''.join(['a'] * 64)}"
-        self.verified_payments.append({
-            "payer": verification.payer,
-            "amount": "0.001",
-            "tx_hash": mock_tx_hash,
-            "timestamp": time.time(),
-        })
+        self.verified_payments.append(
+            {
+                "payer": verification.payer,
+                "amount": "0.001",
+                "tx_hash": mock_tx_hash,
+                "timestamp": time.time(),
+            }
+        )
 
         return VerifyResponse(
             success=True,
@@ -132,5 +142,5 @@ class MockPaymentVerifier:
             transaction_hash=mock_tx_hash,
         )
 
-    def get_payment_history(self) -> list[dict]:
+    def get_payment_history(self) -> list[dict[str, Any]]:
         return self.verified_payments

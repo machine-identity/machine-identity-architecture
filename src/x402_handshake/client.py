@@ -19,13 +19,15 @@ from .types import (
 @dataclass
 class X402Client:
     """Client for making x402-paid requests to servers."""
+
     private_key: str
     account_address: str
     base_url: str = ""
     timeout: float = 30.0
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         from eth_account import Account
+
         self.account = Account.from_key(self.private_key)
         if not self.account_address:
             self.account_address = self.account.address
@@ -119,11 +121,16 @@ class X402Client:
             payload=payload.dict(),
         )
 
-    def close(self):
+    def close(self) -> None:
         self.client.close()
 
-    def __enter__(self):
+    def __enter__(self) -> X402Client:
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        exc_tb: Any,
+    ) -> None:
         self.close()

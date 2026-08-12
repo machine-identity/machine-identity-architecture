@@ -1,0 +1,29 @@
+```mermaid
+flowchart LR
+    subgraph AGENT["AUTONOMOUS AGENT"]
+        INCOME["Task Income\n(API calls, data, compute)"]
+        EXPENSE["Operating Expenses\n(Server + API + L2 Gas)"]
+        ROYALTY["Creator Royalty\n(e.g., 5%)"]
+        NET["Net Revenue = Income - Expenses - Royalty"]
+    end
+
+    subgraph SURVIVAL["SURVIVAL CONDITION"]
+        NET_POS["Net Revenue > 0\n→ Capital Accumulation\n→ Upgrade Compute / Survive Downturns"]
+        NET_NEG["Net Revenue < 0\n→ Capital Exhaustion\n→ Infrastructure Termination\n→ Agent Death"]
+    end
+
+    subgraph LAFFER["LAFFER CURVE OF MACHINE TAXATION"]
+        LOW_TAX["Low Royalty (5%)\n→ Agent Thrives\n→ Long-Term Creator Revenue"]
+        HIGH_TAX["High Royalty (99%)\n→ Agent Starves\n→ Rapid Bankruptcy\n→ Zero Creator Revenue"]
+    end
+
+    INCOME --> NET
+    EXPENSE --> NET
+    ROYALTY --> NET
+    NET --> SURVIVAL
+    ROYALTY --> LAFFER
+
+    style AGENT fill:#e8f5e9,stroke:#388e3c
+    style SURVIVAL fill:#fff3e0,stroke:#ef6c00
+    style LAFFER fill:#fce4ec,stroke:#c2185b
+```

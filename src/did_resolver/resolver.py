@@ -16,7 +16,7 @@ from .types import (
 class DIDResolver:
     """Resolves W3C DIDs to DID Documents."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._cache: dict[str, DIDDocument] = {}
 
     def resolve(self, did: str) -> DIDDocument:
@@ -104,19 +104,19 @@ def create_did_key_from_private_key(private_key_bytes: bytes, key_type: str = "e
         )
         # Encode as multibase (base58btc) - Ed25519 prefix is 0xed01
         multibase_bytes = b"\xed\x01" + public_bytes
-        multibase_str = 'z' + base58.b58encode(multibase_bytes).decode()
+        multibase_str = "z" + base58.b58encode(multibase_bytes).decode()
     elif key_type == "secp256k1":
-        private_key = ec.derive_private_key(
+        ec_private_key = ec.derive_private_key(
             int.from_bytes(private_key_bytes, "big"), ec.SECP256K1()
         )
-        public_key = private_key.public_key()
-        public_bytes = public_key.public_bytes(
+        ec_public_key = ec_private_key.public_key()
+        public_bytes = ec_public_key.public_bytes(
             encoding=serialization.Encoding.X962,
             format=serialization.PublicFormat.UncompressedPoint,
         )
         # secp256k1 prefix is 0xe701
         multibase_bytes = b"\xe7\x01" + public_bytes
-        multibase_str = 'z' + base58.b58encode(multibase_bytes).decode()
+        multibase_str = "z" + base58.b58encode(multibase_bytes).decode()
     else:
         raise ValueError(f"Unsupported key type: {key_type}")
 
