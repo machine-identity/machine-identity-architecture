@@ -1,0 +1,207 @@
+# Machine Identity Architecture
+
+Reference implementations for the research paper: **"The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance"**
+
+[![CI](https://github.com/machine-identity/machine-identity-architecture/actions/workflows/ci.yml/badge.svg)](https://github.com/machine-identity/machine-identity-architecture/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+
+## Overview
+
+This repository provides working reference implementations for the two core architectural pillars of machine identity described in the paper:
+
+| Pillar | Implementation | Specification |
+|--------|----------------|---------------|
+| **Economic Autonomy** | `x402_handshake` | [x402.org](https://x402.org) - HTTP 402 Payment Required |
+| **Cryptographic Self-Sovereignty** | `did_resolver` | [W3C DID Core](https://www.w3.org/TR/did-core/) - `did:key`, `did:pkh` |
+| **Hardware-Level Proof** | `tee_attestation` | Remote Attestation Quote (mock) |
+
+## Quickstart
+
+```bash
+# Install
+pip install -e ".[dev]"
+
+# Run x402 handshake demo
+python examples/run_x402_demo.py
+
+# Run DID resolver demo
+python examples/run_did_demo.py
+
+# Run tests
+pytest -v
+
+# Lint & type check
+ruff check . && ruff format --check . && mypy src/
+```
+
+## Paper & Citation
+
+**Full Paper:** [docs/paper.md](docs/paper.md) | [assets/machine_identity.pdf](assets/machine_identity.pdf)
+
+```bibtex
+@techreport{machuca2026machineidentity,
+  author       = {Machuca Araya, Jean Rub\'en},
+  title        = {The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance},
+  institution  = {Research Report},
+  year         = {2026},
+  month        = {aug},
+  type         = {Working Paper / Research Report},
+  doi          = {10.5281/zenodo.XXXXXXX},
+  keywords     = {AI Governance, Autonomous Agents, Machine Identity, W3C DID, x402, TEE, Agentic Web},
+}
+```
+
+**ORCID:** [0009-0004-9924-2911](https://orcid.org/0009-0004-9924-2911)
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     SOVEREIGN AGENT MODEL                       │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐  │
+│  │  x402        │  │  W3C DID     │  │  TEE Attestation     │  │
+│  │  Handshake   │  │  Resolution  │  │  (Remote Quote)      │  │
+│  └──────────────┘  └──────────────┘  └──────────────────────┘  │
+│         │                │                      │               │
+│         └────────────────┴──────────────────────┘               │
+│                              │                                   │
+│                    ┌─────────▼─────────┐                         │
+│                    │  Autonomous Agent │                         │
+│                    │  (Economic +      │                         │
+│                    │   Cryptographic)  │                         │
+│                    └───────────────────┘                         │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+## Reference Implementations
+
+### 1. x402 Handshake (`src/x402_handshake/`)
+Implements the HTTP 402 Payment Required flow for agent-to-agent micropayments.
+
+```python
+from x402_handshake import Client, Server, PaymentRequirements
+
+# Server requires payment for API access
+server = Server()
+requirements = server.create_payment_requirements(
+    amount="0.001",
+    currency="USDC",
+    network="base-sepolia",
+    pay_to="0x..."
+)
+
+# Client receives 402, pays, retries
+client = Client(private_key="...")
+response = client.request_with_payment("POST", "/api/data", requirements)
+```
+
+**Files:**
+- `types.py` - PaymentRequirements, PaymentPayload, VerifyResponse
+- `client.py` - Client-side payment flow
+- `server.py` - Server-side 402 generation + verification
+- `payment.py` - Signature verification, settlement logic
+
+### 2. DID Resolver (`src/did_resolver/`)
+Resolves W3C Decentralized Identifiers (`did:key`, `did:pkh`) to DID Documents.
+
+```python
+from did_resolver import DIDResolver, DIDVerifier
+
+resolver = DIDResolver()
+did_doc = resolver.resolve("did:key:z6MkpTHR...")
+
+verifier = DIDVerifier()
+valid = verifier.verify_signature(
+    did_doc=did_doc,
+    message=b"hello",
+    signature=sig_bytes,
+    verification_method="did:key:z6MkpTHR...#z6MkpTHR..."
+)
+```
+
+**Files:**
+- `types.py` - DIDDocument, VerificationMethod, ServiceEndpoint
+- `resolver.py` - `did:key` and `did:pkh` resolution
+- `verifier.py` - Ed25519/secp256k1 signature verification
+
+### 3. TEE Attestation Mock (`src/tee_attestation/`)
+Simulates remote attestation quote generation and verification.
+
+```python
+from tee_attestation import QuoteGenerator, QuoteVerifier
+
+generator = QuoteGenerator()
+quote = generator.generate_quote(
+    mr_enclave="abcd1234...",
+    mr_signer="efgh5678...",
+    report_data=b"agent-v1.0"
+)
+
+verifier = QuoteVerifier()
+valid = verifier.verify(quote, expected_mr_enclave="abcd1234...")
+```
+
+## Project Structure
+
+```
+machine-identity-architecture/
+├── .github/workflows/
+│   ├── ci.yml           # Lint, type-check, test
+│   └── release.yml      # Tag → Zenodo deposit
+├── docs/
+│   ├── paper.md         # Full research paper
+│   ├── executive-summary.md
+│   └── architecture/    # Mermaid diagrams
+├── src/
+│   ├── x402_handshake/
+│   ├── did_resolver/
+│   └── tee_attestation/
+├── tests/
+│   ├── test_x402_handshake.py
+│   ├── test_did_resolver.py
+│   └── test_tee_attestation.py
+├── examples/
+│   ├── run_x402_demo.py
+│   └── run_did_demo.py
+├── assets/
+│   ├── machine_identity.pdf
+│   └── executive-summary.pdf
+├── pyproject.toml
+├── README.md
+├── LICENSE
+├── CITATION.cff
+└── CHANGELOG.md
+```
+
+## Development
+
+```bash
+# Setup
+python -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
+pre-commit install
+
+# Quality gates (run before commit)
+ruff check . --fix
+ruff format .
+mypy src/
+pytest -v
+```
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+## Related Work
+
+- [CognitiveOS ADR-009: Machine Identity Profile](https://github.com/cognitiveos/adr/tree/main/009-machine-identity-profile)
+- [x402 Specification](https://github.com/coinbase/x402)
+- [W3C DID Core](https://www.w3.org/TR/did-core/)
+- [AgentKit by Coinbase](https://github.com/coinbase/agentkit)

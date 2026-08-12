@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: "Machuca Araya"
+    given-names: "Jean Rubén"
+    orcid: "https://orcid.org/0009-0004-9924-2911"
+title: "Machine Identity Architecture: Reference Implementations"
+version: "0.1.0"
+doi: "10.5281/zenodo.XXXXXXX"
+date-released: "2026-08-12"
+url: "https://github.com/jrmachuca/machine-identity-architecture"
+license: "MIT"
+keywords:
+  - "AI Governance"
+  - "Autonomous Agents"
+  - "Machine Identity"
+  - "W3C DID"
+  - "x402"
+  - "TEE"
+  - "Agentic Web"
+  - "Cryptographic Self-Sovereignty"
+preferred-citation:
+  type: "techreport"
+  authors:
+    - family-names: "Machuca Araya"
+      given-names: "Jean Rubén"
+      orcid: "https://orcid.org/0009-0004-9924-2911"
+  title: "The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance"
+  institution: "Research Report"
+  year: 2026
+  month: 8
+  doi: "10.5281/zenodo.XXXXXXX"
+  url: "https://github.com/jrmachuca/machine-identity-architecture"
