@@ -98,13 +98,13 @@ August 2026
 
 ### Slide 6: Enterprise Action Plan
 
-| Priority | Action | Timeline |
-|----------|--------|----------|
-| **HIGH** | Pilot x402 for internal agent APIs | Q3 2026 |
-| **HIGH** | Evaluate MIP Gateway (CognitiveOS ADR-009) | Q4 2026 |
-| **MED** | Join W3C DID WG / CCG | Ongoing |
-| **MED** | Budget for TEE-enabled agent infra | 2027 Planning |
-| **LOW** | Build Verifiable Credential reputation system | 2027+ |
+| Priority | Action | Phase |
+|----------|--------|-------|
+| **1. Pilot** | Run x402 for internal agent APIs | Short-term |
+| **2. Evaluate** | Assess MIP Gateway (CognitiveOS ADR-009) | Short-term |
+| **3. Influence** | Join W3C DID WG / CCG | Ongoing |
+| **4. Enable** | Budget for TEE-enabled agent infra | Medium-term |
+| **5. Scale** | Build Verifiable Credential reputation system | Long-term |
 
 ---
 

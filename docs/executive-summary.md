@@ -122,12 +122,13 @@ pytest -v                           # Full test suite
 
 ## Next Steps
 
-| Action | Timeline | Owner |
-|--------|----------|-------|
-| Pilot x402 payments for internal agent APIs | Q3 2026 | Platform Team |
-| Evaluate MIP Gateway (CognitiveOS) for vendor agents | Q4 2026 | Security/Architecture |
-| Join W3C DID WG / CCG for standards influence | Ongoing | CTO Office |
-| Allocate budget for TEE-enabled agent infrastructure | 2027 Planning | Infra/Finance |
+| Priority | Action | Phase |
+|----------|--------|-------|
+| **1. Pilot** | Run x402 payments for internal agent APIs | Short-term |
+| **2. Evaluate** | Assess MIP Gateway (CognitiveOS) for vendor agents | Short-term |
+| **3. Influence** | Join W3C DID WG / CCG for standards input | Ongoing |
+| **4. Enable** | Budget for TEE-capable agent infrastructure | Medium-term |
+| **5. Scale** | Build verifiable credential reputation system | Long-term |
 
 ---
 
