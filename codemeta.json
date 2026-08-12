@@ -1,0 +1,47 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "machine-identity-architecture",
+  "description": "Reference implementations for the Architecture of Machine Identity research paper",
+  "version": "0.1.0",
+  "datePublished": "2026-08-12",
+  "license": "https://spdx.org/licenses/MIT",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Jean Rubén",
+      "familyName": "Machuca Araya",
+      "identifier": "https://orcid.org/0009-0004-9924-2911"
+    }
+  ],
+  "keywords": [
+    "AI Governance",
+    "Autonomous Agents",
+    "Machine Identity",
+    "W3C DID",
+    "x402",
+    "TEE",
+    "Agentic Web"
+  ],
+  "repository": "https://github.com/machine-identity/machine-identity-architecture",
+  "codeRepository": "https://github.com/machine-identity/machine-identity-architecture",
+  "issueTracker": "https://github.com/machine-identity/machine-identity-architecture/issues",
+  "programmingLanguage": "Python",
+  "runtimePlatform": "Python 3.11+",
+  "relatedLink": [
+    {
+      "@type": "WebPage",
+      "url": "https://doi.org/10.5281/zenodo.XXXXXXX",
+      "description": "Research paper on Zenodo"
+    }
+  ],
+  "developmentStatus": "active",
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Jean Rubén",
+      "familyName": "Machuca Araya",
+      "identifier": "https://orcid.org/0009-0004-9924-2911"
+    }
+  ]
+}
