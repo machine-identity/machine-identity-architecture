@@ -129,7 +129,7 @@ jobs:
           r = requests.put(
               f'https://zenodo.org/api/deposit/depositions/{deposition_id}',
               headers={**headers, 'Content-Type': 'application/json'},
-              json=metadata
+              json={'metadata': metadata}
           )
           if not r.ok:
               print("METADATA REJECTED:", r.status_code, r.text[:2000])
