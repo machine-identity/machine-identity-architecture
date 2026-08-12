@@ -47,39 +47,96 @@ jobs:
     if: github.repository == 'machine-identity/machine-identity-architecture'
     steps:
       - uses: actions/checkout@v4
-      - name: Deposit to Zenodo
-        uses: zenodo/zenodo-action@v1
-        with:
-          zenodo_token: ${{ secrets.ZENODO_TOKEN }}
-          deposition_metadata: |
-            {
-              "title": "Machine Identity Architecture: Reference Implementations",
-              "description": "Reference implementations for the research paper: The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance",
-              "creators": [
-                {
-                  "name": "Machuca Araya, Jean Rubén",
-                  "orcid": "0009-0004-9924-2911"
-                }
-              ],
-              "keywords": ["AI Governance", "Autonomous Agents", "Machine Identity", "W3C DID", "x402", "TEE", "Agentic Web"],
-              "license": "MIT",
-              "publication_type": "software",
-              "version": "${{ github.ref_name }}",
-              "related_identifiers": [
-                {
-                  "relation": "isSupplementTo",
-                  "identifier": "10.5281/zenodo.XXXXXXX",
-                  "resource_type": "publication"
-                }
-              ]
-            }
-          files: |
-            [
-              "src/",
-              "examples/",
-              "docs/",
+      - name: Install requests
+        run: pip install requests
+      - name: Deposit Software to Zenodo
+        env:
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+          ZENODO_DOI: ${{ secrets.ZENODO_DOI }}
+          VERSION: ${{ github.ref_name }}
+        run: |
+          python << 'EOF'
+          import os
+          import json
+          import requests
+
+          token = os.environ['ZENODO_TOKEN']
+          version = os.environ['VERSION']
+          existing_doi = os.environ.get('ZENODO_DOI', '')
+
+          headers = {
+              'Authorization': f'Bearer {token}',
+              'Content-Type': 'application/json',
+          }
+
+          # Create or update deposition
+          if existing_doi:
+              # New version of an existing record
+              record_id = existing_doi.split('.')[-1]
+              url = f'https://zenodo.org/api/deposit/depositions/{record_id}/actions/newversion'
+              r = requests.post(url, headers=headers)
+              r.raise_for_status()
+              deposition_id = r.json()['id']
+          else:
+              # Create new
+              url = 'https://zenodo.org/api/deposit/depositions'
+              r = requests.post(url, headers=headers, json={})
+              r.raise_for_status()
+              deposition_id = r.json()['id']
+
+          # Upload files
+          files = [
+              "src",
+              "examples",
+              "docs",
               "README.md",
               "LICENSE",
               "CITATION.cff",
+              "codemeta.json",
               "pyproject.toml"
-            ]
+          ]
+
+          for f in files:
+              upload_url = f'https://zenodo.org/api/deposit/depositions/{deposition_id}/files'
+              with open(f, 'rb') as fp:
+                  data = {'name': f} if os.path.isfile(f) else {'name': f + '.zip'}
+                  if os.path.isfile(f):
+                      r = requests.post(upload_url, headers={'Authorization': f'Bearer {token}'}, data=data, files={'file': fp})
+                      r.raise_for_status()
+                  else:
+                      import zipfile
+                      import io
+                      buf = io.BytesIO()
+                      with zipfile.ZipFile(buf, 'w', zipfile.ZIP_DEFLATED) as zf:
+                          for root, dirs, fnames in os.walk(f):
+                              for fn in fnames:
+                                  full = os.path.join(root, fn)
+                                  zf.write(full, os.path.relpath(full, '.'))
+                      buf.seek(0)
+                      r = requests.post(upload_url, headers={'Authorization': f'Bearer {token}'}, data=data, files={'file': ('archive.zip', buf)})
+                      r.raise_for_status()
+
+          # Set metadata
+          metadata = {
+              "title": "Machine Identity Architecture: Reference Implementations",
+              "description": "Reference implementations for the research paper: The Architecture of Machine Identity: Sovereign Agents, Economic Autonomy, and the Future of AI Governance",
+              "creators": [{"name": "Machuca Araya, Jean Rubén", "orcid": "0009-0004-9924-2911"}],
+              "keywords": ["AI Governance", "Autonomous Agents", "Machine Identity", "W3C DID", "x402", "TEE", "Agentic Web"],
+              "license": "MIT",
+              "publication_type": "software",
+              "version": version,
+              "related_identifiers": []
+          }
+          r = requests.put(
+              f'https://zenodo.org/api/deposit/depositions/{deposition_id}',
+              headers={**headers, 'Content-Type': 'application/json'},
+              json=metadata
+          )
+          r.raise_for_status()
+
+          # Publish
+          r = requests.post(f'https://zenodo.org/api/deposit/depositions/{deposition_id}/actions/publish', headers=headers)
+          r.raise_for_status()
+
+          print(f"Published! DOI: {r.json().get('doi', 'check Zenodo')}")
+          EOF
