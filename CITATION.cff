@@ -8,8 +8,9 @@ title: "Machine Identity Architecture: Reference Implementations"
 version: "0.1.0"
 doi: "10.5281/zenodo.XXXXXXX"
 date-released: "2026-08-12"
-url: "https://github.com/jrmachuca/machine-identity-architecture"
+url: "https://github.com/machine-identity/machine-identity-architecture"
 license: "MIT"
+license-url: "https://opensource.org/licenses/MIT"
 keywords:
   - "AI Governance"
   - "Autonomous Agents"
@@ -30,4 +31,5 @@ preferred-citation:
   year: 2026
   month: 8
   doi: "10.5281/zenodo.XXXXXXX"
-  url: "https://github.com/jrmachuca/machine-identity-architecture"
+  url: "https://github.com/machine-identity/machine-identity-architecture"
+  license: "CC-BY-4.0"

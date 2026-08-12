@@ -6,6 +6,7 @@
   "version": "0.1.0",
   "datePublished": "2026-08-12",
   "license": "https://spdx.org/licenses/MIT",
+  "license-url": "https://opensource.org/licenses/MIT",
   "author": [
     {
       "@type": "Person",
@@ -32,7 +33,12 @@
     {
       "@type": "WebPage",
       "url": "https://doi.org/10.5281/zenodo.XXXXXXX",
-      "description": "Research paper on Zenodo"
+      "description": "Research paper on Zenodo (CC-BY-4.0)"
+    },
+    {
+      "@type": "WebPage",
+      "url": "https://github.com/machine-identity/machine-identity-architecture",
+      "description": "Software repository (MIT)"
     }
   ],
   "developmentStatus": "active",
