@@ -32,7 +32,7 @@ Reference implementations for the research paper: **"The Architecture of Machine
 [![License: MIT](https://img.shields.io/badge/Code%20License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![License: CC-BY-4.0](https://img.shields.io/badge/Paper%20License-CC--BY--4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21899100.svg)](https://doi.org/10.5281/zenodo.21899100)
 
 ## Overview
 
@@ -75,7 +75,7 @@ ruff check . && ruff format --check . && mypy src/
   year         = {2026},
   month        = {aug},
   type         = {Working Paper / Research Report},
-  doi          = {10.5281/zenodo.XXXXXXX},
+  doi          = {10.5281/zenodo.21899100},
   keywords     = {AI Governance, Autonomous Agents, Machine Identity, W3C DID, x402, TEE, Agentic Web},
 }
 ```

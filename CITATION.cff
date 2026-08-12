@@ -6,7 +6,7 @@ authors:
     orcid: "https://orcid.org/0009-0004-9924-2911"
 title: "Machine Identity Architecture: Reference Implementations"
 version: "0.1.0"
-doi: "10.5281/zenodo.XXXXXXX"
+doi: "10.5281/zenodo.21899100"
 date-released: "2026-08-12"
 url: "https://github.com/machine-identity/machine-identity-architecture"
 license: "MIT"
@@ -30,6 +30,6 @@ preferred-citation:
   institution: "Research Report"
   year: 2026
   month: 8
-  doi: "10.5281/zenodo.XXXXXXX"
+  doi: "10.5281/zenodo.21899100"
   url: "https://github.com/machine-identity/machine-identity-architecture"
   license: "CC-BY-4.0"

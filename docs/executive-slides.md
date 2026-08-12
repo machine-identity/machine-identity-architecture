@@ -153,6 +153,6 @@ pytest -v
 3. Do we have TEE-capable infrastructure budgeted?
 4. Who owns "agent identity strategy" — Security, Platform, or Architecture?
 
-**Contact:** jeanruben.machuca@example.com  
-**Paper DOI:** 10.5281/zenodo.XXXXXXX  
+**Contact:** github.com/jeanmachuca  
+**Paper DOI:** 10.5281/zenodo.21899100  
 **Code:** github.com/machine-identity/machine-identity-architecture

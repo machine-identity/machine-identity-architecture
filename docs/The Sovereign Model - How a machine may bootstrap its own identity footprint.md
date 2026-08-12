@@ -5,7 +5,7 @@
 **ORCID:** [0009-0004-9924-2911](https://orcid.org/0009-0004-9924-2911)  
 **Date:** August 2026  
 **Version:** 1.0.0  
-**DOI:** `10.5281/zenodo.XXXXXXX` (pending)  
+**DOI:** `10.5281/zenodo.21899100`  
 **License:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)  
 
 **Keywords:** AI Governance, Autonomous Agents, Machine Identity, W3C DID, x402, TEE, Agentic Web, Cryptographic Self-Sovereignty
