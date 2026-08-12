@@ -39,7 +39,7 @@ ruff check . && ruff format --check . && mypy src/
 
 ## Paper & Citation
 
-**Full Paper:** [docs/paper.md](docs/paper.md) | [assets/machine_identity.pdf](assets/machine_identity.pdf)
+**Full Paper:** [docs/machine_identity.md](docs/machine_identity.md) | [assets/machine_identity.pdf](assets/machine_identity.pdf)
 
 ```bibtex
 @techreport{machuca2026machineidentity,

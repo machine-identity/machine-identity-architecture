@@ -43,7 +43,7 @@ jobs:
             }
           files: |
             [
-              "docs/paper.md",
+              "docs/machine_identity.md",
               "assets/machine_identity.pdf",
               "docs/executive-summary.md",
               "assets/executive-summary.pdf",
