@@ -2,18 +2,18 @@ from __future__ import annotations
 
 import base64
 from dataclasses import dataclass, field
-from enum import Enum
+from enum import StrEnum
 from typing import Any
 
 import base58
 
 
-class DIDMethod(str, Enum):
+class DIDMethod(StrEnum):
     KEY = "key"
     PKH = "pkh"
 
 
-class VerificationMaterialFormat(str, Enum):
+class VerificationMaterialFormat(StrEnum):
     MULTIBASE = "Multibase"
     JWK = "JsonWebKey2020"
     BLOCKCHAIN_ACCOUNT_ID = "BlockchainAccountId"
