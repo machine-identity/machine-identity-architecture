@@ -34,4 +34,7 @@ Thumbs.db
 .env.local
 
 # Logs
-*.logsite/
+*.log
+
+# Build output
+site/
