@@ -55,5 +55,6 @@ jobs:
               "docs/architecture/control-layers.mmd",
               "docs/architecture/economic-model.mmd",
               "docs/architecture/bootstrap-pipeline.mmd",
+              "docs/executive-slides.md",
               "machine_identity.bib"
             ]
