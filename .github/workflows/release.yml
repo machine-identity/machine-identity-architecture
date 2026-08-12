@@ -131,6 +131,8 @@ jobs:
               headers={**headers, 'Content-Type': 'application/json'},
               json=metadata
           )
+          if not r.ok:
+              print("METADATA REJECTED:", r.status_code, r.text[:2000])
           r.raise_for_status()
 
           # Publish
